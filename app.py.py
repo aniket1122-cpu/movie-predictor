@@ -21,6 +21,12 @@ st.markdown(
 
 # Title
 st.markdown("<h1 style='text-align: center;'>🎬 Movie Box Office Predictor</h1>", unsafe_allow_html=True)
+
+# Description
+st.markdown(
+    "This system predicts movie box office performance based on genre, release timing, director experience, and production scale."
+)
+
 st.markdown("---")
 
 # Input Section
@@ -68,7 +74,7 @@ if st.button("🚀 Predict Box Office"):
     else:
         result = "📉 Low Box Office"
 
-    # Month boost logic
+    # Month boost
     if month in ["May", "Jun", "Jul", "Dec"]:
         result += " 🚀 (Peak Season Boost)"
 
@@ -78,5 +84,10 @@ if st.button("🚀 Predict Box Office"):
     elif studio == "Major Studio":
         result += " 🌍 Wide Release"
 
-    # Final Output
-    st.success(f"🎯 Estimated Box Office: {result}")
+    # Output
+    st.markdown("## 🎯 Prediction Result")
+    st.success(result)
+
+# Footer
+st.markdown("---")
+st.markdown("Developed by Ansh | Uttarakhand University 🎓")
