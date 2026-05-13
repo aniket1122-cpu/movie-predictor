@@ -1,22 +1,42 @@
-
+st.markdown(
+    """
+    <style>
+    .stButton>button {
+        width: 100%;
+        background-color: #ff4b4b;
+        color: white;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 import streamlit as st
 
-st.title("Movie Success Predictor 🎬")
+# Title
+st.set_page_config(page_title="Movie Predictor", layout="centered")
 
-st.write("Demo-safe version (no sliders)")
+st.markdown("<h1 style='text-align: center;'>🎬 Movie Box Office Predictor</h1>", unsafe_allow_html=True)
+st.markdown("---")
 
-budget = st.number_input("Budget (in millions)", min_value=0.0, value=50.0)
-runtime = st.number_input("Runtime (minutes)", min_value=0, value=120)
-rating = st.selectbox("Rating", ["G", "PG", "PG-13", "R"])
+# Input Section
+st.subheader("🎯 Enter Movie Details")
 
-if st.button("Predict"):
-    # Fake prediction logic (replace with your model)
-    score = budget * 0.3 + runtime * 0.1
+col1, col2 = st.columns(2)
 
-    if rating == "PG-13":
-        score += 10
+with col1:
+    genre = st.selectbox("🎬 Genre", ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"])
+    director = st.selectbox("🎥 Director Tier", ["Emerging", "Mid-level", "Top Director"])
 
-    if score > 50:
-        st.success("This movie is likely to be a HIT! 🚀")
-    else:
-        st.warning("This movie might not perform well 😬")
+with col2:
+    month = st.selectbox("📅 Release Month", 
+                         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
+    studio = st.selectbox("🏢 Studio Tier", ["Small Studio", "Medium Studio", "Major Studio"])
+
+st.markdown("---")
+
+# Predict Button
+if st.button("🚀 Predict Box Office"):
+    st.success("Prediction will appear here 🎉")
