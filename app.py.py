@@ -1,4 +1,9 @@
 import streamlit as st
+
+# Page config
+st.set_page_config(page_title="Movie Predictor", layout="centered")
+
+# Custom button style
 st.markdown(
     """
     <style>
@@ -13,11 +18,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-import streamlit as st
 
 # Title
-st.set_page_config(page_title="Movie Predictor", layout="centered")
-
 st.markdown("<h1 style='text-align: center;'>🎬 Movie Box Office Predictor</h1>", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -38,6 +40,43 @@ with col2:
 
 st.markdown("---")
 
-# Predict Button
+# Prediction Logic
 if st.button("🚀 Predict Box Office"):
-    st.success("Prediction will appear here 🎉")
+
+    # Base logic
+    if genre == "Action" and studio == "Major Studio" and director == "Top Director":
+        result = "🔥 Blockbuster (Very High Collection)"
+
+    elif genre == "Action" and studio == "Major Studio":
+        result = "💰 High Box Office"
+
+    elif genre == "Drama" and director == "Top Director":
+        result = "🎬 Critically Successful (Medium Collection)"
+
+    elif genre == "Comedy":
+        result = "😊 Decent Collection"
+
+    elif genre == "Horror":
+        result = "👻 Low to Medium Collection"
+
+    elif genre == "Romance":
+        result = "❤️ Moderate Success"
+
+    elif genre == "Sci-Fi":
+        result = "🚀 Depends on VFX & Budget (Medium to High)"
+
+    else:
+        result = "📉 Low Box Office"
+
+    # Month boost logic
+    if month in ["May", "Jun", "Jul", "Dec"]:
+        result += " 🚀 (Peak Season Boost)"
+
+    # Studio adjustment
+    if studio == "Small Studio":
+        result += " ⚠ Limited Reach"
+    elif studio == "Major Studio":
+        result += " 🌍 Wide Release"
+
+    # Final Output
+    st.success(f"🎯 Estimated Box Office: {result}")
